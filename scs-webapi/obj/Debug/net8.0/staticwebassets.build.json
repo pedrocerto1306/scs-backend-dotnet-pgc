@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Z49aFLdt9MTtA2RdlkqmmrmFjvkBvyw4YR7Hpj91C80=",
+  "Source": "scs-webapi",
+  "BasePath": "_content/scs-webapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
