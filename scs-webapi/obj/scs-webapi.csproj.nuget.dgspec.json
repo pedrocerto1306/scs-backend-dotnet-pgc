@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/pedro/Documents/UFABC/PGC/Fernando/SCS/scs-webapi/scs-webapi.csproj": {}
+    "C:\\Users\\pietr\\OneDrive\\Documentos\\UFABC\\Pedro\\PGC\\scs-backend-dotnet-pgc\\scs-webapi\\scs-webapi.csproj": {}
   },
   "projects": {
-    "/home/pedro/Documents/UFABC/PGC/Fernando/SCS/scs-webapi/scs-webapi.csproj": {
+    "C:\\Users\\pietr\\OneDrive\\Documentos\\UFABC\\Pedro\\PGC\\scs-backend-dotnet-pgc\\scs-webapi\\scs-webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pedro/Documents/UFABC/PGC/Fernando/SCS/scs-webapi/scs-webapi.csproj",
+        "projectUniqueName": "C:\\Users\\pietr\\OneDrive\\Documentos\\UFABC\\Pedro\\PGC\\scs-backend-dotnet-pgc\\scs-webapi\\scs-webapi.csproj",
         "projectName": "scs-webapi",
-        "projectPath": "/home/pedro/Documents/UFABC/PGC/Fernando/SCS/scs-webapi/scs-webapi.csproj",
-        "packagesPath": "/home/pedro/.nuget/packages/",
-        "outputPath": "/home/pedro/Documents/UFABC/PGC/Fernando/SCS/scs-webapi/obj/",
+        "projectPath": "C:\\Users\\pietr\\OneDrive\\Documentos\\UFABC\\Pedro\\PGC\\scs-backend-dotnet-pgc\\scs-webapi\\scs-webapi.csproj",
+        "packagesPath": "C:\\Users\\pietr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pietr\\OneDrive\\Documentos\\UFABC\\Pedro\\PGC\\scs-backend-dotnet-pgc\\scs-webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/pedro/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\pietr\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,12 +32,21 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Amazon.Lambda.AspNetCoreServer.Hosting": {
+              "target": "Package",
+              "version": "[1.7.3, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.12, )"
@@ -66,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.406/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
