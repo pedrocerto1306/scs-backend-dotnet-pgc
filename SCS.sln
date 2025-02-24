@@ -1,24 +1,24 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scs-webapi", "scs-webapi\scs-webapi.csproj", "{48477D7C-1F2D-71C6-3603-CB5042ECC2F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sics-webapi", "sics-webapi\sics-webapi.csproj", "{1B675E85-0A45-47C9-B4B9-34E4D3F19FB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{48477D7C-1F2D-71C6-3603-CB5042ECC2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48477D7C-1F2D-71C6-3603-CB5042ECC2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48477D7C-1F2D-71C6-3603-CB5042ECC2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48477D7C-1F2D-71C6-3603-CB5042ECC2F3}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2444A1FF-3070-4DFE-AE40-D0FBFAF93FFE}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B675E85-0A45-47C9-B4B9-34E4D3F19FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B675E85-0A45-47C9-B4B9-34E4D3F19FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B675E85-0A45-47C9-B4B9-34E4D3F19FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B675E85-0A45-47C9-B4B9-34E4D3F19FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

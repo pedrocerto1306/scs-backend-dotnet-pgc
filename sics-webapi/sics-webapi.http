@@ -1,0 +1,6 @@
+@sics_webapi_HostAddress = http://localhost:5197
+
+GET {{sics_webapi_HostAddress}}/servicos/
+Accept: application/json
+
+###
