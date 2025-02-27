@@ -23,13 +23,13 @@ public class SicsServicosController : ControllerBase
     public IEnumerable<SicsServicos> Get()
     {
         var servicos =  Enumerable.Range(1, 5).Select(index =>
-        new SicsServicos
-        (
-            index % 3 == 0 ? EnumSicsCotacoes.Euro : index % 2 == 0 ? EnumSicsCotacoes.Dolar : EnumSicsCotacoes.Real,
-            index % 3 == 1 ? 100 : index % 2 == 0 ? 150 : 300,
-            Summaries[index]
-        ))
-        .ToArray();
+            new SicsServicos
+            (
+                index % 3 == 0 ? EnumSicsCotacoes.Euro : index % 2 == 0 ? EnumSicsCotacoes.Dolar : EnumSicsCotacoes.Real,
+                index % 3 == 1 ? 100 : index % 2 == 0 ? 150 : 300,
+                Summaries[index]
+            ))
+            .ToArray();
         return servicos;
     }
 }
