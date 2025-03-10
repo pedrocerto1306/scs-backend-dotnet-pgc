@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace sics_webapi;
+namespace sics_webapi.Models;
 
 public class SicsServico()
 {
@@ -11,13 +11,13 @@ public class SicsServico()
     public int IdPrestador { get; set; }
     public float Valor { get; set; }
     public EnumSicsCotacoes Cotacao {get;set;}
-    public float valorReal => Cotacao switch
+    /*public float valorReal => Cotacao switch
     {
         EnumSicsCotacoes.Euro => Valor * 7,
         EnumSicsCotacoes.Dolar => Valor * 6,
         EnumSicsCotacoes.Real => Valor,
         _ => throw new NotImplementedException("Cotacao aplicada não existe no sistema sics.")
-    };
+    };*/
     
 }
 

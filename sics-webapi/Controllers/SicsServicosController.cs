@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using sics_webapi.Models;
 
 namespace sics_webapi.Controllers;
 
