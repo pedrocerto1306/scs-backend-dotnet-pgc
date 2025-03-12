@@ -10,4 +10,6 @@ public class DataContext : DbContext
     public DbSet<SicsServico> SicsServicos { get; set; }
     public DbSet<SicsPrestador> SicsPrestadores { get; set; }
     public DbSet<SicsCliente> SicsClientes { get; set; }
+    public DbSet<SicsServicoContratado> SicsServicosContratados { get; set; }
+    public DbSet<SicsServicoOferecido> SicsServicosOferecidos { get; set; }
 }

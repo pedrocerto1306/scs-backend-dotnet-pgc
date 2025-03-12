@@ -36,4 +36,27 @@ public class SicsServicosController : ControllerBase
     {
         yield return await _dbContext.SicsServicos.FirstOrDefaultAsync(servico => servico.Id == id);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put([FromBody] SicsServico servico)
+    {
+        try
+        {
+            if(!ModelState.IsValid) return BadRequest(servico);
+
+            SicsServico? servicoAntigo = await _dbContext.SicsServicos.FirstOrDefaultAsync(s => s.Id == servico.Id);
+
+            if(servicoAntigo == null) return BadRequest($"Serviço nao encontrado: {servico.Id}");
+
+            servicoAntigo = servico;
+            _dbContext.Update(servicoAntigo);
+            await _dbContext.SaveChangesAsync();
+
+            return StatusCode(200);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
 }
