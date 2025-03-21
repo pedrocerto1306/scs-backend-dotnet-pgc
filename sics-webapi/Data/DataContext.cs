@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using sics_webapi.Models;
 
@@ -13,3 +14,8 @@ public class DataContext : DbContext
     public DbSet<SicsServicoContratado> SicsServicosContratados { get; set; }
     public DbSet<SicsServicoOferecido> SicsServicosOferecidos { get; set; }
 }
+
+// public class IdentityContext : IdentityDbContext<Usuario>
+// {
+//     public IdentityContext(DbContextOptions options) : base(options) {}
+// }

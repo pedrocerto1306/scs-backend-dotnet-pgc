@@ -10,10 +10,6 @@ namespace sics_webapi.Controllers;
 [Route("[controller]")]
 public class SicsServicosController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Pintura", "Mecânica", "Faxina", "Motorista", "Babá", "Cuidador(a)", "Contador(a)"
-    };
 
 
     private readonly ILogger<SicsServicosController> _logger;
@@ -32,31 +28,55 @@ public class SicsServicosController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async IAsyncEnumerable<SicsServico> GetById([FromRoute] int id)
+    public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        yield return await _dbContext.SicsServicos.FirstOrDefaultAsync(servico => servico.Id == id);
+        SicsServico? servico = await _dbContext.SicsServicos.FirstOrDefaultAsync(servico => servico.Id == id);
+        if(servico == null) 
+            return NotFound(id);
+        else
+            return StatusCode(200, servico);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] SicsServico servico)
+    {
+        if(!ModelState.IsValid) return BadRequest(ModelState);
+        _dbContext.Add<SicsServico>(servico);
+        await _dbContext.SaveChangesAsync();
+        return Ok(servico);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put([FromBody] SicsServico servico)
+    public async Task<IActionResult> Put(int id, [FromBody] SicsServico servico)
     {
         try
         {
-            if(!ModelState.IsValid) return BadRequest(servico);
+            if(!ModelState.IsValid) return BadRequest(ModelState);
 
-            SicsServico? servicoAntigo = await _dbContext.SicsServicos.FirstOrDefaultAsync(s => s.Id == servico.Id);
+            SicsServico? servicoAntigo = await _dbContext.SicsServicos.FirstOrDefaultAsync(s => s.Id == id);
 
-            if(servicoAntigo == null) return BadRequest($"Serviço nao encontrado: {servico.Id}");
+            if(servicoAntigo == null) return NotFound(servico);
 
-            servicoAntigo = servico;
-            _dbContext.Update(servicoAntigo);
+            _dbContext.Entry<SicsServico>(servicoAntigo).CurrentValues.SetValues(servico);
+
             await _dbContext.SaveChangesAsync();
-
-            return StatusCode(200);
+            return Ok();
         }
         catch (Exception ex)
         {
             return StatusCode(500, ex.Message);
         }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        SicsServico? servico = await _dbContext.SicsServicos.FirstOrDefaultAsync(s => s.Id == id);
+        if(servico == null) return NotFound(id);
+
+        _dbContext.SicsServicos.Remove(servico);
+        await _dbContext.SaveChangesAsync();
+
+        return NoContent();
     }
 }
