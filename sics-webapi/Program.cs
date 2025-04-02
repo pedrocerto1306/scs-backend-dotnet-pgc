@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using sics_webapi.Data;
+using sics_webapi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +24,18 @@ builder.Services.AddDbContext<DataContext>(
     context => context.UseMySql(builder.Configuration.GetConnectionString("ConexaoSicsDb"), new MySqlServerVersion(new Version(11, 4, 4)))
 );
 
+//Identity
+
+builder.Services.AddAuthentication();   //Quem você é?
+builder.Services.AddAuthorization();    //O que você pode fazer
+
+builder.Services
+    .AddIdentityApiEndpoints<SicsUsuario>()
+    .AddEntityFrameworkStores<DataContext>();
 
 var app = builder.Build();
+
+app.MapIdentityApi<SicsUsuario>();          //Adiciona os endpoints do identity core
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -40,3 +52,5 @@ app.MapControllers();
 app.UseCors();
 
 app.Run();
+
+//uM_aSenh4@f0Rt3
