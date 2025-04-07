@@ -1,13 +1,10 @@
-using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using sics_webapi.Models.Enums;
 
 namespace sics_webapi.Models;
 
-public class SicsCliente()
+public class SicsCliente() : SicsPessoa
 {
-    [Key]
-    public int Id { get; set; }
-    [Required]
-    public string? Nome { get; set; }
-    public string? Endereco { get; set; }
-    public string? Contato { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public EnumSicsNotas Nota { get; set; } = EnumSicsNotas.Regular;
 }

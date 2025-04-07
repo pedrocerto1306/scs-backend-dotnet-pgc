@@ -1,7 +1,9 @@
-using Microsoft.AspNetCore.Identity;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using sics_webapi.Data;
 using sics_webapi.Models;
+using sics_webapi.Models.Enums;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +27,6 @@ builder.Services.AddDbContext<DataContext>(
 );
 
 //Identity
-
 builder.Services.AddAuthentication();   //Quem você é?
 builder.Services.AddAuthorization();    //O que você pode fazer
 
@@ -52,5 +53,3 @@ app.MapControllers();
 app.UseCors();
 
 app.Run();
-
-//uM_aSenh4@f0Rt3

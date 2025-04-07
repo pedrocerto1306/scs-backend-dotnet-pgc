@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sics_webapi.Data;
 
 #nullable disable
 
-namespace sics_webapi.Data.Migrations
+namespace sics_webapi.Data.DataMigrationsLocalhost
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250406234627_MigrationTransacoes2")]
+    partial class MigrationTransacoes2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,43 +157,6 @@ namespace sics_webapi.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("sics_webapi.Models.SicsAvaliacao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Avaliacao")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("ClienteID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LinksImagens")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("Nota")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PrestadorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServicoID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClienteID");
-
-                    b.HasIndex("PrestadorID");
-
-                    b.HasIndex("ServicoID");
-
-                    b.ToTable("SicsAvaliacoes");
-                });
-
             modelBuilder.Entity("sics_webapi.Models.SicsCliente", b =>
                 {
                     b.Property<int>("Id")
@@ -202,21 +168,12 @@ namespace sics_webapi.Data.Migrations
                     b.Property<string>("Contato")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Documento")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Endereco")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("LinkImagem")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("Nota")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -232,32 +189,15 @@ namespace sics_webapi.Data.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Contato")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Documento")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Endereco")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Especialidade")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Genero")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IdentidadeConfirmada")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("LinkImagem")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("Nota")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -330,26 +270,20 @@ namespace sics_webapi.Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Cancelado")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("Efetivado")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("MotivoCancelamento")
-                        .HasColumnType("longtext");
 
                     b.Property<int>("PrestadorId")
                         .HasColumnType("int");
 
                     b.Property<int>("ServicoId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("data")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("efetivado")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
@@ -478,33 +412,6 @@ namespace sics_webapi.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("sics_webapi.Models.SicsAvaliacao", b =>
-                {
-                    b.HasOne("sics_webapi.Models.SicsCliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("sics_webapi.Models.SicsPrestador", "Prestador")
-                        .WithMany()
-                        .HasForeignKey("PrestadorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("sics_webapi.Models.SicsServico", "Servico")
-                        .WithMany()
-                        .HasForeignKey("ServicoID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Prestador");
-
-                    b.Navigation("Servico");
                 });
 
             modelBuilder.Entity("sics_webapi.Models.SicsTransacao", b =>

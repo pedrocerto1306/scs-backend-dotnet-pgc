@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using sics_webapi.Models.Enums;
 
 namespace sics_webapi.Models;
 
@@ -10,17 +12,11 @@ public class SicsServico()
     public string? Nome { get; set; }
     public int IdPrestador { get; set; }
     public float Valor { get; set; }
-    public EnumSicsCotacoes Cotacao {get;set;}
-    /*public float valorReal => Cotacao switch
-    {
-        EnumSicsCotacoes.Euro => Valor * 7,
-        EnumSicsCotacoes.Dolar => Valor * 6,
-        EnumSicsCotacoes.Real => Valor,
-        _ => throw new NotImplementedException("Cotacao aplicada não existe no sistema sics.")
-    };*/
-    
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public EnumSicsCotacoes Cotacao {get;set;}    
 }
 
+/*
 public record SicsServicos(EnumSicsCotacoes? cotacao, float precoCotacaoOriginal, string? nome)
 {
     public float precoReal = cotacao switch
@@ -31,10 +27,4 @@ public record SicsServicos(EnumSicsCotacoes? cotacao, float precoCotacaoOriginal
         _ => throw new NotImplementedException("Cotacao aplicada não existe no sistema sics.")
     };
 }
-
-public enum EnumSicsCotacoes
-{
-    Real,
-    Dolar,
-    Euro
-}
+*/

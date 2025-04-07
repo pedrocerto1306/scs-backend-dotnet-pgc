@@ -1,14 +1,11 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
+using sics_webapi.Models.Enums;
 
 namespace sics_webapi.Models;
 
 public class SicsUsuario : IdentityUser
 {
-    public TipoUsuario tipoUsuario { get; set; }
-}
-
-public enum TipoUsuario
-{
-    Cliente,
-    Prestador,
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public EnumSicsTipoUsuarios tipoUsuario { get; set; }
 }

@@ -1,14 +1,11 @@
-using System.ComponentModel.DataAnnotations;
+using sics_webapi.Models.Enums;
 
 namespace sics_webapi.Models;
 
-public class SicsPrestador()
+public class SicsPrestador() : SicsPessoa
 {
-    [Key]
-    public int Id { get; set; }
-    [Required]
-    public string? Nome { get; set; }
+    public EnumSicsGeneros Genero { get; set; }
     public string? Especialidade { get; set; }
-    [Required]
-    public string? Contato { get; set; }
+    public bool IdentidadeConfirmada { get; set; } = false;
+    public EnumSicsNotas Nota { get; set; } = EnumSicsNotas.Regular;
 }
