@@ -38,6 +38,7 @@ public class SicsClientesController : ControllerBase
     {
         if(!ModelState.IsValid) return BadRequest(cliente);
 
+        cliente.Nota = Models.Enums.EnumSicsNotas.Regular; //Por padrão, novos clientes terão nota Regular
         _dbContext.Add<SicsCliente>(cliente);
         await _dbContext.SaveChangesAsync();
 

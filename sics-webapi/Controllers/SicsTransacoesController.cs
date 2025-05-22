@@ -7,6 +7,8 @@ using sics_webapi.Models.Enums;
 
 namespace sics_webapi.Controllers;
 
+[ApiController]
+[Route("[controller]")]
 public class SicsTransacoesController : ControllerBase
 {
     private readonly ILogger<SicsTransacoesController> _logger;
@@ -34,15 +36,15 @@ public class SicsTransacoesController : ControllerBase
             return StatusCode(200, transacao);
     }
 
-    [HttpGet]
+    [HttpGet("porPrestador")]
     public IEnumerable<SicsTransacao> GetTransacoesPrestador(
-        [FromRoute] int PrestadorID
+        [FromQuery] int PrestadorID
     )
     {
         return _dbContext.SicsTransacoes.Where(t => t.PrestadorId == PrestadorID).AsEnumerable<SicsTransacao>();
     }
 
-    [HttpGet]
+    [HttpGet("porCliente")]
     public IEnumerable<SicsTransacao> GetTransacoesCliente(
         [FromQuery] int ClienteID
     )
@@ -50,7 +52,7 @@ public class SicsTransacoesController : ControllerBase
         return _dbContext.SicsTransacoes.Where(t => t.PrestadorId == ClienteID).AsEnumerable<SicsTransacao>();
     }
 
-    [HttpGet]
+    [HttpGet("porData")]
     public IEnumerable<SicsTransacao> GetTransacoesData(
         [FromQuery] DateTime data
     )
@@ -69,7 +71,7 @@ public class SicsTransacoesController : ControllerBase
         return Ok(transacao);
     }
 
-    [HttpPatch]
+    [HttpPatch("efetiva")]
     public async Task<IActionResult> EfetivaTransacao([FromQuery] int id)
     {
         try
@@ -91,7 +93,7 @@ public class SicsTransacoesController : ControllerBase
         }
     }
 
-    [HttpPatch]
+    [HttpPatch("cancela")]
     [Authorize("Cliente")]
     public async Task<IActionResult> CancelaTransacao([FromQuery] int id, string motivoCancelamento)
     {

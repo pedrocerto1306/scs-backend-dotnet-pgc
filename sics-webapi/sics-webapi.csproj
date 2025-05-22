@@ -7,24 +7,25 @@
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <RootNamespace>sics_webapi</RootNamespace>
     <AWSProjectType>Lambda</AWSProjectType>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <PublishReadyToRun>true</PublishReadyToRun>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-    <!-- <PublishTrimmed>true</PublishTrimmed>
+    <PublishTrimmed>true</PublishTrimmed>
     <TrimMode>link</TrimMode> -->
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer.Hosting" Version="1.7.3" />
+    <PackageReference Include="Gerencianet.NETCore.SDK" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.13" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="8.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0" />
   </ItemGroup>
 
 </Project>

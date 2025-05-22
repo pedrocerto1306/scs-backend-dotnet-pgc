@@ -6,7 +6,12 @@ namespace sics_webapi.Data;
 
 public class DataContext : IdentityDbContext<SicsUsuario>
 {
-    public DataContext(DbContextOptions options) : base(options) {}
+    public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+    }
     public DbSet<SicsServico> SicsServicos { get; set; }
     public DbSet<SicsPrestador> SicsPrestadores { get; set; }
     public DbSet<SicsCliente> SicsClientes { get; set; }
