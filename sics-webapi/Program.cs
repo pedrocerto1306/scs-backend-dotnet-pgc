@@ -1,9 +1,12 @@
+using Amazon.S3;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using sics_webapi.Data;
 using sics_webapi.Models;
+using Amazon.Extensions.NETCore.Setup;
+using sics_webapi.Models.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +36,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<DataContext>(
     context => context.UseMySql(builder.Configuration.GetConnectionString("ConexaoSicsDb"), new MySqlServerVersion(new Version(11, 4, 4)))
 );
+builder.Services.AddAWSService<IAmazonS3>();
+builder.Services.AddScoped<IS3StorageService, S3StorageService>();
 
 //Identity
 builder.Services.AddAuthentication();   //Quem você é?

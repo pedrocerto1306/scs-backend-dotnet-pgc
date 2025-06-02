@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sics_webapi.Data;
 
@@ -11,9 +12,11 @@ using sics_webapi.Data;
 namespace sics_webapi.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250601220419_Migration010625")]
+    partial class Migration010625
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,9 +210,6 @@ namespace sics_webapi.Data.Migrations
 
                     b.Property<string>("Endereco")
                         .HasColumnType("longtext");
-
-                    b.Property<int>("Genero")
-                        .HasColumnType("int");
 
                     b.Property<string>("LinkImagem")
                         .HasColumnType("longtext");
