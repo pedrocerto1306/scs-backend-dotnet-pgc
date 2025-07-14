@@ -13,8 +13,9 @@ public class SicsServico()
     public int IdPrestador { get; set; }
     public float Valor { get; set; }
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public EnumSicsCotacoes Cotacao {get;set;}
+    public EnumSicsCotacoes Cotacao { get; set; }
     public string? LinkImagem { get; set; } = "https://sics-assets.s3.sa-east-1.amazonaws.com/images/icone_generico_servico_generico.png";
+    public string tipo { get; set; } = "Geral";
 }
 
 /*

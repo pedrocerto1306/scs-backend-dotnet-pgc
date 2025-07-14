@@ -38,6 +38,16 @@ public class SicsServicosController : ControllerBase
             return StatusCode(200, servico);
     }
 
+    [HttpGet("consulta")]
+    public async Task<IActionResult> GetByTipo([FromQuery] string tipo)
+    {
+        List<SicsServico>? servicos = await _dbContext.SicsServicos.Where(s => s.tipo == tipo).ToListAsync();
+        if (servicos.Any())
+            return StatusCode(200, servicos);
+        else
+            return NotFound($"Nenhum servico encontrado com tipo = {tipo}");
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] SicsServico servico)
     {
