@@ -11,15 +11,12 @@ public class SicsAvaliacao()
     public int Id { get; set; }
     [ForeignKey("Prestador")]
     public int PrestadorID { get; set; }
-    public SicsPrestador? Prestador { get; set; }
     [ForeignKey("Servico")]
     public int ServicoID { get; set; }
-    public SicsServico? Servico { get; set; }
     [ForeignKey("Cliente")]
     public int ClienteID { get; set; }
-    public SicsCliente? Cliente { get; set; }
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public EnumSicsNotas Nota { get; set; }
     public string? Avaliacao { get; set; }
-    public string? LinksImagens { get; set; }
+    public string? LinksImagens { get; set; } = "https://sics-assets.s3.sa-east-1.amazonaws.com/images/icone_generico_servico_prestado.png";
 }

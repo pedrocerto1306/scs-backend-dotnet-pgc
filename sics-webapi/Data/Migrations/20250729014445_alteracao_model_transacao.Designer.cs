@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sics_webapi.Data;
 
@@ -11,9 +12,11 @@ using sics_webapi.Data;
 namespace sics_webapi.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250729014445_alteracao_model_transacao")]
+    partial class alteracao_model_transacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,6 +185,12 @@ namespace sics_webapi.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteID");
+
+                    b.HasIndex("PrestadorID");
+
+                    b.HasIndex("ServicoID");
+
                     b.ToTable("SicsAvaliacoes");
                 });
 
@@ -340,17 +349,14 @@ namespace sics_webapi.Data.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("Estado")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Observacoes")
-                        .HasColumnType("longtext");
-
                     b.Property<int>("PrestadorId")
                         .HasColumnType("int");
 
                     b.Property<int>("ServicoId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -473,6 +479,33 @@ namespace sics_webapi.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("sics_webapi.Models.SicsAvaliacao", b =>
+                {
+                    b.HasOne("sics_webapi.Models.SicsCliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("sics_webapi.Models.SicsPrestador", "Prestador")
+                        .WithMany()
+                        .HasForeignKey("PrestadorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("sics_webapi.Models.SicsServico", "Servico")
+                        .WithMany()
+                        .HasForeignKey("ServicoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Prestador");
+
+                    b.Navigation("Servico");
                 });
 #pragma warning restore 612, 618
         }

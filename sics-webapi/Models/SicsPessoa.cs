@@ -13,5 +13,5 @@ public class SicsPessoa()
     public string? Contato { get; set; }
     public string? Documento { get; set; }
     public EnumSicsGeneros Genero { get; set; }
-    public string? LinkImagem { get; set; }
+    public string? LinkImagem { get; set; } = "https://sics-assets.s3.sa-east-1.amazonaws.com/images/icone_generico_cliente_homem.png";
 }

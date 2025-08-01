@@ -29,96 +29,39 @@ public class SicsAvaliacoesController : ControllerBase
     [HttpGet("{Id}")]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        SicsAvaliacao? transacao = await _dbContext.SicsAvaliacoes.FirstOrDefaultAsync(transacao => transacao.Id == id);
-        if(transacao == null) 
+        SicsAvaliacao? avaliacao = await _dbContext.SicsAvaliacoes.FirstOrDefaultAsync(avaliacao => avaliacao.Id == id);
+        if (avaliacao == null)
             return NotFound(id);
         else
-            return StatusCode(200, transacao);
+            return StatusCode(200, avaliacao);
     }
 
-    /*TODO: ajustar para a entidade Avaliações
-
-    [HttpGet("porPrestador")]
-    public IEnumerable<SicsAvaliacao> GetTransacoesPrestador(
-        [FromQuery] int PrestadorID
-    )
+    [HttpGet("cliente/{clienteId}")]
+    public IEnumerable<SicsAvaliacao> getByClienteId([FromRoute] int clienteId)
     {
-        return _dbContext.SicsAvaliacoes.Where(t => t.PrestadorId == PrestadorID).AsEnumerable<SicsAvaliacao>();
+        IEnumerable<SicsAvaliacao> avaliacoes = _dbContext.SicsAvaliacoes.Where(avaliacao => avaliacao.ClienteID == clienteId);
+        if (avaliacoes == null)
+            return (IEnumerable<SicsAvaliacao>)NotFound(clienteId);
+        else
+            return avaliacoes;
     }
 
-    [HttpGet("porCliente")]
-    public IEnumerable<SicsAvaliacao> GetTransacoesCliente(
-        [FromQuery] int ClienteID
-    )
+    [HttpGet("prestador/{prestadorId}")]
+    public IEnumerable<SicsAvaliacao> getByPrestadorId([FromRoute] int prestadorId)
     {
-        return _dbContext.SicsAvaliacoes.Where(t => t.PrestadorId == ClienteID).AsEnumerable<SicsAvaliacao>();
-    }
-
-    [HttpGet("porData")]
-    public IEnumerable<SicsAvaliacao> GetTransacoesData(
-        [FromQuery] DateTime data
-    )
-    {
-        return _dbContext.SicsAvaliacoes.Where(t => t.Data == data).AsEnumerable<SicsAvaliacao>();
+        IEnumerable<SicsAvaliacao> avaliacoes = _dbContext.SicsAvaliacoes.Where<SicsAvaliacao>(avaliacao => avaliacao.PrestadorID == prestadorId);
+        if (avaliacoes == null)
+            return (IEnumerable<SicsAvaliacao>)NotFound(prestadorId);
+        else
+            return avaliacoes;
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostTransacao(
-        [FromBody] SicsAvaliacao transacao
-    )
+    public async Task<IActionResult> Post([FromBody] SicsAvaliacao avaliacao)
     {
-        if(!ModelState.IsValid) return BadRequest(ModelState);
-        _dbContext.Add<SicsAvaliacao>(transacao);
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        _dbContext.Add<SicsAvaliacao>(avaliacao);
         await _dbContext.SaveChangesAsync();
-        return Ok(transacao);
+        return Ok(avaliacao);
     }
-
-    [HttpPatch("efetiva")]
-    public async Task<IActionResult> EfetivaTransacao([FromQuery] int id)
-    {
-        try
-        {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
-
-            SicsAvaliacao? transacao = await _dbContext.SicsAvaliacoes.FirstOrDefaultAsync(s => s.Id == id);
-
-            if(transacao == null) return NotFound(transacao);
-            transacao.Efetivado = true;
-            _dbContext.Entry<SicsAvaliacao>(transacao).CurrentValues.SetValues(transacao);
-
-            await _dbContext.SaveChangesAsync();
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-    }
-
-    [HttpPatch("cancela")]
-    [Authorize("Cliente")]
-    public async Task<IActionResult> CancelaTransacao([FromQuery] int id, string motivoCancelamento)
-    {
-        try
-        {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
-
-            SicsAvaliacao? transacao = await _dbContext.SicsAvaliacoes.FirstOrDefaultAsync(s => s.Id == id);
-
-            if(transacao == null) return NotFound(transacao);
-            transacao.Efetivado = false;
-            transacao.Cancelado = true;
-            transacao.MotivoCancelamento = motivoCancelamento;
-            _dbContext.Entry<SicsAvaliacao>(transacao).CurrentValues.SetValues(transacao);
-
-            await _dbContext.SaveChangesAsync();
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-    }
-
-    */
 }

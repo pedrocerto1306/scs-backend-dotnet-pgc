@@ -3,3 +3,4 @@
 bin
 obj
 sics-webapi/appsettings.Development.json
+sics-webapi/appsettings.json

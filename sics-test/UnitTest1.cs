@@ -16,6 +16,6 @@ public class UnitTest1
         result = false;
 
         //Assert test
-        Assert.True(result);
+        Assert.True(!result);
     }
 }

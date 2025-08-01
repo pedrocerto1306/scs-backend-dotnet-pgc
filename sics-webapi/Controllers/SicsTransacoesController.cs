@@ -81,7 +81,7 @@ public class SicsTransacoesController : ControllerBase
             SicsTransacao? transacao = await _dbContext.SicsTransacoes.FirstOrDefaultAsync(s => s.Id == id);
 
             if(transacao == null) return NotFound(transacao);
-            transacao.Efetivado = true;
+            transacao.Estado = EnumSicsEstadoTransacao.Confirmado;
             _dbContext.Entry<SicsTransacao>(transacao).CurrentValues.SetValues(transacao);
 
             await _dbContext.SaveChangesAsync();
@@ -94,7 +94,6 @@ public class SicsTransacoesController : ControllerBase
     }
 
     [HttpPatch("cancela")]
-    [Authorize("Cliente")]
     public async Task<IActionResult> CancelaTransacao([FromQuery] int id, string motivoCancelamento)
     {
         try
@@ -104,9 +103,8 @@ public class SicsTransacoesController : ControllerBase
             SicsTransacao? transacao = await _dbContext.SicsTransacoes.FirstOrDefaultAsync(s => s.Id == id);
 
             if(transacao == null) return NotFound(transacao);
-            transacao.Efetivado = false;
-            transacao.Cancelado = true;
-            transacao.MotivoCancelamento = motivoCancelamento;
+            transacao.Estado = EnumSicsEstadoTransacao.Cancelado;
+            transacao.Observacoes = $"Cancelado: {motivoCancelamento}";
             _dbContext.Entry<SicsTransacao>(transacao).CurrentValues.SetValues(transacao);
 
             await _dbContext.SaveChangesAsync();
