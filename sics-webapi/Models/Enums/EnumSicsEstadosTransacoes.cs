@@ -4,6 +4,7 @@ public enum EnumSicsEstadoTransacao
 {
     Pendente_Confirmacao_Prestador,
     Confirmado,
+    Pago,
     Em_Execucao,
     Executado,
     Cancelado,
